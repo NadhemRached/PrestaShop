@@ -36,7 +36,7 @@ class PdfInvoiceControllerCore extends FrontController
 
     public function postProcess()
     {
-        if (!$this->context->customer->isLogged() && !Tools::getValue('secure_key')) {
+        if (!$this->context->customer->isLogged() && !Tools::getValue('secure_key') && !Context::getContext()->cookie->id_guest) {
             Tools::redirect('index.php?controller=authentication&back=pdf-invoice');
         }
 
